@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 app.use(session({
-    secret: "your-secret-key", // Change this to a secure key
+    secret: "sid", // Change this to a secure key
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // Set true if using HTTPS
