@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import session from "express-session";
 import mongoose from "mongoose";
 import cors from "cors";
 import axios from "axios"
@@ -22,6 +23,14 @@ app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: "your-secret-key", // Change this to a secure key
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set true if using HTTPS
+  }));
+
 // ✅ API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/policies", policyRoutes);

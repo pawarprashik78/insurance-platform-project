@@ -5,11 +5,6 @@ import * as bcrypt from "bcryptjs";  // ✅ Works in ES module
 import User from "../models/User.js";
 const router = express.Router();
 
-app.use(session({
-  secret: "sid",
-  resave: false,
-  saveUninitialized: true
-}));
 // User Registration
 router.post("/user-register", async (req, res) => {
   try {
@@ -59,19 +54,25 @@ router.post("/user-login", async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
+    if (!req.session) {
+      return res.status(500).json({ message: "Session not initialized" });
+    }
+
     req.session.user = {
       _id: user._id,
       name: user.name,
       email: user.email
     };
-    res.json({
-      message: "Login successful"})
-      res.redirect("/dashboard");
+
+    // ✅ Send JSON response with redirect information
+    res.json({ message: "Login successful", redirectTo: "/dashboard" });
+
   } catch (error) {
     console.error("Login Error:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
+
 
 
 export default router;

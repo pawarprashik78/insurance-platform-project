@@ -11,9 +11,8 @@ const Navbar = () => {
         </div>
         <div className="nav-items flex space-x-8 text-lg">
           <Link to="/" className="hover:text-gray-300 transition duration-300">Home</Link>
-          <Link to="/user-login" className="hover:text-gray-300 transition duration-300">User Portal</Link>
-          <Link to="/buy-policy" className="hover:text-gray-300 transition duration-300">Buy Policy</Link>
-          <Link to="/manage-insurance" className="hover:text-gray-300 transition duration-300">Manage Insurance</Link>
+          <Link to="/user-register" className="hover:text-gray-300 transition duration-300">User Portal</Link>
+          <Link to="/buy-new-policy" className="hover:text-gray-300 transition duration-300">Buy Policy</Link>
         </div>
       </div>
     </nav>
